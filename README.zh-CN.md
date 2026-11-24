@@ -1,12 +1,12 @@
-# Reset Ring
+# Codex Ring
 
 [English](README.md)
 
-Reset Ring 显示 ChatGPT Codex 的额度与重置时间。Windows 版贴在当前应用窗口上，macOS 版显示在菜单栏。
+Codex Ring 显示 ChatGPT Codex 的额度与重置时间。Windows 版贴在当前应用窗口上，macOS 版显示在菜单栏。
 
-## 为什么做 Reset Ring
+## 为什么做 Codex Ring
 
-订阅额度是花钱买来的。用得太快，离重置还有好几天就没额度了。用得太保守，窗口结束时又可能剩下一大截。Reset Ring 把**额度剩余**和**距重置的时间**放在一起，方便你决定什么时候省着用、什么时候把攒着的任务做掉。
+订阅额度是花钱买来的。用得太快，离重置还有好几天就没额度了。用得太保守，窗口结束时又可能剩下一大截。Codex Ring 把**额度剩余**和**距重置的时间**放在一起，方便你决定什么时候省着用、什么时候把攒着的任务做掉。
 
 - **额度快用完，离重置还早**。把剩余额度留给这几天必须完成的任务。
 - **快重置了，余额还很多**。可以安排之前暂缓的任务，把剩余额度用起来。
@@ -25,20 +25,20 @@ Codex Plus 和存在有效 5 小时额度窗口的账户显示三环，其余情
 
 | 正常显示 | 悬停显示 |
 | --- | --- |
-| <img src="assets/windows-light-normal.png" width="300" height="236" alt="正常尺寸的 Reset Ring 圆盘"> | <img src="assets/windows-light-hover.png" width="300" height="236" alt="悬停时放大的圆盘与额度提示"> |
+| <img src="assets/windows-light-normal.png" width="300" height="236" alt="正常尺寸的 Codex Ring 圆盘"> | <img src="assets/windows-light-hover.png" width="300" height="236" alt="悬停时放大的圆盘与额度提示"> |
 
 ## Codex 插件包
 
-仓库也提供 Reset Ring 插件和安装引导 skill。在 Codex 中打开本仓库，通过插件目录或 `/plugins` 查找本地市场中的 `reset-ring`。安装后运行插件设置，配置圆盘和自动启动。桌面应用中的插件发现和安装尚待实测。GitHub 上提供的是插件包，公开插件目录的上架需要单独提交审核。
+仓库也提供 Codex Ring 插件和安装引导 skill。在 Codex 中打开本仓库，通过插件目录或 `/plugins` 查找本地市场中的 `codex-ring`。安装后运行插件设置，配置圆盘和自动启动。桌面应用中的插件发现和安装尚待实测。GitHub 上提供的是插件包，公开插件目录的上架需要单独提交审核。
 
 ## 把这段话发给 AI 安装
 
 复制下面这段话，发给 Codex 或其他能在你电脑上运行命令的 AI 助手。
 
 ```text
-请帮我从 https://github.com/qz-zhao/reset-ring 安装 Reset Ring。
+请帮我从 https://github.com/qz-zhao/codex-ring 安装 Codex Ring。
 先读中文 README，识别我用的是 Windows 还是 macOS，按对应步骤检查依赖并安装。
-请安装成 ChatGPT Codex 的 $reset-ring skill。Windows 下请运行 Set-AutoStart.ps1，启用登录后后台检测，让打开 GPT 时圆盘自动启动。
+请安装成 ChatGPT Codex 的 $codex-ring skill。Windows 下请运行 Set-AutoStart.ps1，启用登录后后台检测，让打开 GPT 时圆盘自动启动。
 启动圆盘并检查能否读取我的额度。如果需要我登录或授权，请告诉我具体在哪一步操作。
 ```
 
@@ -74,12 +74,12 @@ pwsh -STA -NoProfile -File scripts/Show-Quota.ps1
 macOS 菜单栏版目前是预览。需要 macOS 12 或更高版本、Xcode 命令行工具，以及系统路径中的 PowerShell 7。使用 Codex 时，还需将已登录的 Codex CLI 加入系统路径。
 
 ```sh
-swift scripts/ResetRing.swift
+swift scripts/CodexRing.swift
 ```
 
 菜单栏仪表显示 ChatGPT Codex 的额度，可在菜单里换配色和退出。加 `--demo` 可查看模拟 Plus 三环。菜单栏配色适配系统明暗外观，额度提示跟随系统首选语言。
 
-如果想作为 Codex skill 使用，把仓库文件夹放到 `$CODEX_HOME/skills` 下。若未设置 `CODEX_HOME`，则放到 `~/.codex/skills`。打开新的 Codex 聊天并调用 `$reset-ring`。
+如果想作为 Codex skill 使用，把仓库文件夹放到 `$CODEX_HOME/skills` 下。若未设置 `CODEX_HOME`，则放到 `~/.codex/skills`。打开新的 Codex 聊天并调用 `$codex-ring`。
 
 ## Windows 操作
 

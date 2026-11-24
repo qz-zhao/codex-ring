@@ -5,15 +5,15 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 if (!$IsWindows) { throw 'This shortcut installer supports Windows.' }
-$directory = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'ResetRing'
-$startup = Join-Path ([Environment]::GetFolderPath('Startup')) 'Reset Ring.lnk'
-$menuShortcut = Join-Path ([Environment]::GetFolderPath('Programs')) 'Reset Ring/ChatGPT.lnk'
+$directory = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'CodexRing'
+$startup = Join-Path ([Environment]::GetFolderPath('Startup')) 'Codex Ring.lnk'
+$menuShortcut = Join-Path ([Environment]::GetFolderPath('Programs')) 'Codex Ring/ChatGPT.lnk'
 [IO.File]::Delete((Join-Path $directory 'autostart.enabled'))
 [IO.File]::Delete($startup)
 if ($Remove) {
     [IO.File]::Delete($ShortcutPath)
     [IO.File]::Delete($menuShortcut)
-    'Reset Ring app shortcut removed.'
+    'Codex Ring app shortcut removed.'
     return
 }
 $null = [IO.Directory]::CreateDirectory($directory)
@@ -24,7 +24,7 @@ foreach ($file in Get-ChildItem -LiteralPath $PSScriptRoot -File) {
     if ($file.FullName -ne $destination) { Copy-Item -LiteralPath $file.FullName -Destination $destination -Force }
 }
 $compiler = Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
-$launcher = Join-Path $directory 'ResetRing.Launcher.exe'
+$launcher = Join-Path $directory 'CodexRing.Launcher.exe'
 & $compiler /nologo /target:winexe "/out:$launcher" (Join-Path $installed 'AppLauncher.cs')
 if ($LASTEXITCODE) { throw 'Unable to compile the shortcut launcher.' }
 if (!$AppTarget) {
@@ -44,7 +44,7 @@ $shell = New-Object -ComObject WScript.Shell
 $link = $shell.CreateShortcut($ShortcutPath)
 $link.TargetPath = $launcher
 $link.WindowStyle = 7
-$link.Description = 'Open ChatGPT, then launch Reset Ring in the background'
+$link.Description = 'Open ChatGPT, then launch Codex Ring in the background'
 $app = Get-AppxPackage '*Codex*' | Select-Object -First 1
 if ($app) {
     $icon = Get-ChildItem -LiteralPath $app.InstallLocation -Filter 'ChatGPT.exe' -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1

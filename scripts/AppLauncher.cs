@@ -27,7 +27,7 @@ internal static class AppLauncher
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-            if (settings.Length > 3) overlay.EnvironmentVariables["RESET_RING_CODEX_EXE"] = settings[3];
+            if (settings.Length > 3) overlay.EnvironmentVariables["CODEX_RING_CODEX_EXE"] = settings[3];
             Process.Start(overlay);
         }
         catch (Exception error)

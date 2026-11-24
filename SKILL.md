@@ -1,6 +1,6 @@
 ---
-name: reset-ring
-description: Launch, position, or troubleshoot Reset Ring for ChatGPT Codex quota on Windows and macOS.
+name: codex-ring
+description: Launch, position, or troubleshoot Codex Ring for ChatGPT Codex quota on Windows and macOS.
 ---
 
 Run `scripts/Show-Quota.ps1` with PowerShell 7 in STA mode from the signed-in Windows desktop. Keep the process running while the overlay is needed.
@@ -14,8 +14,8 @@ The overlay follows the foreground ChatGPT Codex window without taking focus. Le
 Use `-Left` and `-Bottom` to adjust the center of the overlay relative to the Codex client area's lower-left corner, in logical pixels. Use `-Demo` or `-DemoPlus` to check the layouts with synthetic data. Use `-Probe` to check account data without opening a window. Close the PowerShell process to stop the overlay.
 
 The script uses Codex App Server with the current Codex sign-in. It selects the 10,080-minute window in the Codex bucket. If the account omits that window, report that weekly data is unavailable.
-On macOS, run `swift scripts/ResetRing.swift` from the skill directory. The preview displays ChatGPT Codex quota in the macOS menu bar.
+On macOS, run `swift scripts/CodexRing.swift` from the skill directory. The preview displays ChatGPT Codex quota in the macOS menu bar.
 
 ## Install on Windows
 
-When asked to install Reset Ring on Windows, run `pwsh -NoProfile -File scripts/Set-AutoStart.ps1` after placing the skill in its final location, unless the user opts out. A login watcher starts the gauge when ChatGPT or Codex desktop opens, regardless of which shortcut was used. It stops the gauge when the desktop app exits. Verify that the watcher starts a gauge process. Use `-Remove` to disable automatic startup. Re-run the installer after updates.
+When asked to install Codex Ring on Windows, run `pwsh -NoProfile -File scripts/Set-AutoStart.ps1` after placing the skill in its final location, unless the user opts out. A login watcher starts the gauge when ChatGPT or Codex desktop opens, regardless of which shortcut was used. It stops the gauge when the desktop app exits. Verify that the watcher starts a gauge process. Use `-Remove` to disable automatic startup. Re-run the installer after updates.

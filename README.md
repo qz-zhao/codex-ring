@@ -1,12 +1,12 @@
-# Reset Ring
+# Codex Ring
 
 [简体中文](README.zh-CN.md)
 
-Reset Ring displays ChatGPT Codex quota and reset times. On Windows it follows the active desktop window. On macOS it appears in the menu bar.
+Codex Ring displays ChatGPT Codex quota and reset times. On Windows it follows the active desktop window. On macOS it appears in the menu bar.
 
-## Why Reset Ring?
+## Why Codex Ring?
 
-Make your paid quota last through the week and put it to use before it resets. Reset Ring shows your remaining quota beside the time left in the current window, so you can decide when to pace your usage and when to tackle work you've been putting off.
+Make your paid quota last through the week and put it to use before it resets. Codex Ring shows your remaining quota beside the time left in the current window, so you can decide when to pace your usage and when to tackle work you've been putting off.
 
 - **Running low with days to go?** Save the remaining quota for work you need to finish before the reset.
 - **Plenty left with a reset coming up?** Use the available quota on tasks you've been saving.
@@ -25,20 +25,20 @@ Codex Plus and accounts with an active five-hour window use three rings. Other a
 
 | Normal display | On hover |
 | --- | --- |
-| <img src="assets/windows-light-normal.png" width="300" height="236" alt="Reset Ring at its normal size"> | <img src="assets/windows-light-hover.png" width="300" height="236" alt="Expanded Reset Ring with quota and reset details"> |
+| <img src="assets/windows-light-normal.png" width="300" height="236" alt="Codex Ring at its normal size"> | <img src="assets/windows-light-hover.png" width="300" height="236" alt="Expanded Codex Ring with quota and reset details"> |
 
 ## Codex plugin package
 
-This repository also contains a Reset Ring plugin with an onboarding skill. Open this repository in Codex and use the Plugins directory or `/plugins` to find `reset-ring` under the local marketplace. After installation, run the plugin setup to configure the desktop gauge and automatic startup. The plugin directory entry has not yet been tested in the desktop app. Publication to the public plugin catalog is separate from this GitHub package.
+This repository also contains a Codex Ring plugin with an onboarding skill. Open this repository in Codex and use the Plugins directory or `/plugins` to find `codex-ring` under the local marketplace. After installation, run the plugin setup to configure the desktop gauge and automatic startup. The plugin directory entry has not yet been tested in the desktop app. Publication to the public plugin catalog is separate from this GitHub package.
 
-## Ask AI to install Reset Ring
+## Ask AI to install Codex Ring
 
 Paste this into Codex or another AI assistant that can run commands on your computer.
 
 ```text
-Please install Reset Ring from https://github.com/qz-zhao/reset-ring.
+Please install Codex Ring from https://github.com/qz-zhao/codex-ring.
 Read the README, detect whether I use Windows or macOS, and follow the steps for my system.
-Install it as the $reset-ring skill for ChatGPT Codex. On Windows, also run Set-AutoStart.ps1 to start a login watcher that launches the gauge when ChatGPT opens.
+Install it as the $codex-ring skill for ChatGPT Codex. On Windows, also run Set-AutoStart.ps1 to start a login watcher that launches the gauge when ChatGPT opens.
 Start the gauge and verify that it can read my quota. Tell me if I need to sign in or grant access.
 ```
 
@@ -74,12 +74,12 @@ The overlay follows the foreground ChatGPT Codex desktop window. Keep the termin
 The macOS menu bar implementation is a preview. It requires macOS 12 or later, the Xcode Command Line Tools, and PowerShell 7 on PATH. For Codex, the signed-in Codex CLI must also be on PATH.
 
 ```sh
-swift scripts/ResetRing.swift
+swift scripts/CodexRing.swift
 ```
 
 The menu bar displays your ChatGPT Codex quota. Choose a palette or quit from the same menu. Run with `--demo` to preview a simulated Codex Plus dial. The Mac menu adapts to system appearance and uses the system's preferred language for quota labels.
 
-To use Reset Ring as a Codex skill, place this repository folder under `$CODEX_HOME/skills`, or under `~/.codex/skills` if `CODEX_HOME` is unset. Open a new Codex chat and invoke `$reset-ring`.
+To use Codex Ring as a Codex skill, place this repository folder under `$CODEX_HOME/skills`, or under `~/.codex/skills` if `CODEX_HOME` is unset. Open a new Codex chat and invoke `$codex-ring`.
 
 ## Windows controls
 

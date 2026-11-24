@@ -46,7 +46,7 @@ function Get-CodexLocale([string]$configPath) {
 
 $overlayMutex = $null
 if ($IsWindows -and !$Probe -and !$SnapshotJson) {
-    $overlayMutex = [Threading.Mutex]::new($false, 'Local\ResetRing.Overlay')
+    $overlayMutex = [Threading.Mutex]::new($false, 'Local\CodexRing.Overlay')
     try { $acquired = $overlayMutex.WaitOne(0) } catch [Threading.AbandonedMutexException] { $acquired = $true }
     if (!$acquired) { $overlayMutex.Dispose(); return }
 }
@@ -54,11 +54,11 @@ $server = $null
 try {
     $Demo = $Demo -or $DemoPlus
     $Probe = $Probe -or $SnapshotJson
-    if (!$IsWindows -and !$Probe) { throw 'Use scripts/ResetRing.swift for the macOS menu bar.' }
+    if (!$IsWindows -and !$Probe) { throw 'Use scripts/CodexRing.swift for the macOS menu bar.' }
     $codexExecutable = if ($IsWindows) { 'codex.exe' } else { 'codex' }
     $codexCommand = Get-Command $codexExecutable -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
-    if (!$codexCommand -and $env:RESET_RING_CODEX_EXE -and (Test-Path -LiteralPath $env:RESET_RING_CODEX_EXE)) {
-        $codexCommand = [pscustomobject]@{ Source = $env:RESET_RING_CODEX_EXE }
+    if (!$codexCommand -and $env:CODEX_RING_CODEX_EXE -and (Test-Path -LiteralPath $env:CODEX_RING_CODEX_EXE)) {
+        $codexCommand = [pscustomobject]@{ Source = $env:CODEX_RING_CODEX_EXE }
     }
     if (!$Demo -and !$codexCommand) {
         throw 'Codex CLI was not found on PATH.'

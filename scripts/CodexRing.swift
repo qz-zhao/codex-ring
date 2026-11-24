@@ -25,7 +25,7 @@ struct Palette: Decodable {
     let Light: [String]
 }
 
-final class ResetRing: NSObject {
+final class CodexRing: NSObject {
     private let scripts: URL
     private let palettes: [Palette]
     private let demo: Bool
@@ -50,7 +50,7 @@ final class ResetRing: NSObject {
             addItem(palette.name, #selector(selectPalette(_:)), tag: index)
         }
         menu.addItem(.separator())
-        addItem("Quit Reset Ring", #selector(quit), tag: 0)
+        addItem("Quit Codex Ring", #selector(quit), tag: 0)
         item.menu = menu
         update()
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in self?.update() }
@@ -198,5 +198,5 @@ let paletteFile = scripts.appendingPathComponent("palettes.json")
 let palettes = try JSONDecoder().decode([Palette].self, from: Data(contentsOf: paletteFile))
 let app = NSApplication.shared
 app.setActivationPolicy(.accessory)
-let resetRing = ResetRing(scripts: scripts, palettes: palettes, demo: CommandLine.arguments.contains("--demo"))
-withExtendedLifetime(resetRing) { app.run() }
+let codexRing = CodexRing(scripts: scripts, palettes: palettes, demo: CommandLine.arguments.contains("--demo"))
+withExtendedLifetime(codexRing) { app.run() }

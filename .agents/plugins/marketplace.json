@@ -1,8 +1,8 @@
 {
-  "name": "reset-ring-local",
+  "name": "codex-ring-local",
   "plugins": [
     {
-      "name": "reset-ring",
+      "name": "codex-ring",
       "source": { "source": "local", "path": "./" },
       "policy": { "installation": "AVAILABLE" }
     }

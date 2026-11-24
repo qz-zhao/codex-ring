@@ -1,8 +1,8 @@
 param([string]$StateDirectory)
 $ErrorActionPreference = 'Stop'
 if (!$StateDirectory) {
-    $StateDirectory = if ($IsMacOS) { Join-Path $HOME 'Library/Application Support/ResetRing' }
-    else { Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'ResetRing' }
+    $StateDirectory = if ($IsMacOS) { Join-Path $HOME 'Library/Application Support/CodexRing' }
+    else { Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'CodexRing' }
 }
 $null = [IO.Directory]::CreateDirectory($StateDirectory)
 try {
@@ -28,7 +28,7 @@ try {
             $start.CreateNoWindow = $true
             $codexPath = Join-Path $StateDirectory 'codex-path.txt'
             if (Test-Path -LiteralPath $codexPath) {
-                $start.Environment['RESET_RING_CODEX_EXE'] = [IO.File]::ReadAllText($codexPath).Trim()
+                $start.Environment['CODEX_RING_CODEX_EXE'] = [IO.File]::ReadAllText($codexPath).Trim()
             }
             $start.RedirectStandardError = $true
             $start.RedirectStandardOutput = $true
@@ -40,7 +40,7 @@ try {
             } else {
                 $start.FileName = '/usr/bin/xcrun'
                 $start.ArgumentList.Add('swift')
-                $start.ArgumentList.Add((Join-Path $PSScriptRoot 'ResetRing.swift'))
+                $start.ArgumentList.Add((Join-Path $PSScriptRoot 'CodexRing.swift'))
             }
             $child = [Diagnostics.Process]::Start($start)
             $errorRead = $child.StandardError.ReadToEndAsync()
